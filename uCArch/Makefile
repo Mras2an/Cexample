@@ -1,0 +1,40 @@
+# Add plugin 1
+builtin_plugs += exPlug1
+builtin_source += exPlug1.c
+# Add plugin 2
+#builtin_plugs += exPlug2
+#builtin_source += exPlug2.c
+
+
+
+#
+# List
+#
+plugs_declaration=$(foreach i,$(builtin_plugs),{callback_$(subst : ,,$(i))_init, callback_$(subst : ,,$(i))_exit},)
+source_file_head = $(foreach i,$(builtin_source), -include $(patsubst  %.c,%.h,$(i)))
+source_file_obj = $(patsubst  %.c,%.o,$(builtin_source))
+
+
+
+#
+# Env
+#
+CC=gcc
+CFLAGS=-DPLUGS_DECLARATIONS="$(plugs_declaration)"
+LDFLAGS=
+EXEC=myPluginProject
+
+
+
+all: $(EXEC)
+
+myPluginProject: main.o $(source_file_obj)
+	$(CC) -o $@ $^
+
+%.o: %.c
+	$(CC) -o $@ $(source_file_head) -c $< $(CFLAGS)
+
+clean:
+	rm -rf *.o
+	rm -rf $(EXEC)
+
