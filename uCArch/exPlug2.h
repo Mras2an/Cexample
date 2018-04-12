@@ -8,5 +8,14 @@
 */
 
 void callback_exPlug2_init(void);
+void callback_exPlug2_setHal(void);
 void callback_exPlug2_exit(void);
 
+typedef void (*ptxPrint)(void);
+typedef void (*ptxSend)(char * data);
+
+struct  exPlug2_api
+{
+  ptxPrint print;
+  ptxSend send;
+};

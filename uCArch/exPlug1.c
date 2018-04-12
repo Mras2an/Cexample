@@ -29,8 +29,13 @@ static struct exPlug1_api api_funcs =
 
 static void exPlug1_init(void)
 {
-  plugsHandling_setInterface(__FUNCTION__, &api_funcs);
   log_info("init\n");
+}
+
+static void exPlug1_setHal(void)
+{
+  log_info("HAL\n");
+  plugsHandling_setInterface(__FUNCTION__, &api_funcs);
 }
 
 static void exPlug1_exit(void)
@@ -39,6 +44,7 @@ static void exPlug1_exit(void)
 }
 
 PLUGIN_INIT(exPlug1_init)
+PLUGIN_INIT(exPlug1_setHal)
 PLUGIN_EXIT(exPlug1_exit)
 
 

@@ -31,7 +31,10 @@ void * plugsHandling_getInterface(const char * interfaceName)
 {
   for(int i = 0; i < MAX_INTERFACE; i++)
   {
-    if(strncmp(interfaceName, this[i]->name, strlen(interfaceName)) == 0)
-      return this[i]->tmp;
+    if(this[i]->name != NULL)
+      if(strncmp(interfaceName, this[i]->name, strlen(this[i]->name)) == 0)
+        return this[i]->tmp;
   }
+
+  return NULL;
 }

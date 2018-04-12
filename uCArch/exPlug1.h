@@ -8,6 +8,7 @@
 */
 
 void callback_exPlug1_init(void);
+void callback_exPlug1_setHal(void);
 void callback_exPlug1_exit(void);
 
 typedef void (*ptxPrint)(void);
