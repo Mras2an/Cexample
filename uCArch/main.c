@@ -15,7 +15,7 @@ plugin_functs_hal plugsHal[] =
 static void plugs_init(void)
 {
   int nb_plugins = ((int)sizeof(plugs) / (int)ADDR_SIZE);
-  log_info("Nb plugins init detected: %i\n", (nb_plugins / 2));
+  log_plug("Nb plugins init detected: %i\n", (nb_plugins / 2));
   int i;
 
   for(i = 0; i < (nb_plugins / 2); i++)
@@ -25,7 +25,7 @@ static void plugs_init(void)
 static void plugs_setHal(void)
 {
   int nb_plugins_hal = ((int)sizeof(plugsHal) / (int)ADDR_SIZE);
-  log_info("Nb HAL detected: %i\n", nb_plugins_hal);
+  log_plug("Nb HAL detected: %i\n", nb_plugins_hal);
 
   for(int i = 0; i < nb_plugins_hal; i++)
     (plugsHal[i].ptfx_setHal)();
@@ -34,7 +34,7 @@ static void plugs_setHal(void)
 static void plugs_exit(void)
 {
   int nb_plugins = ((int)sizeof(plugs) / (int)ADDR_SIZE);
-  log_info("Nb plugins exit detected: %i\n", (nb_plugins / 2));
+  log_plug("Nb plugins exit detected: %i\n", (nb_plugins / 2));
   int i;
 
   for(i = 0; i < (nb_plugins / 2); i++)

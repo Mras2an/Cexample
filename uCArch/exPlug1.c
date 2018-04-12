@@ -7,12 +7,12 @@
  ********************************************************/
 static void exPlug1_print(void)
 {
-  log_info("print\n");
+  log_plug("print\n");
 }
 
 static void exPlug1_send(char * data)
 {
-  log_info("send: %s\n", data);
+  log_plug("send: %s\n", data);
 }
 
 
@@ -29,18 +29,18 @@ static struct exPlug1_api api_funcs =
 
 static void exPlug1_init(void)
 {
-  log_info("init\n");
+  log_plug("init\n");
 }
 
 static void exPlug1_setHal(void)
 {
-  log_info("HAL\n");
+  log_plug("HAL\n");
   plugsHandling_setInterface(__FUNCTION__, &api_funcs);
 }
 
 static void exPlug1_exit(void)
 {
-  log_info("exit\n");
+  log_plug("exit\n");
 }
 
 PLUGIN_INIT(exPlug1_init)
