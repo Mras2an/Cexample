@@ -43,5 +43,5 @@ static void exPlug2_exit(void)
 }
 
 PLUGIN_INIT(exPlug2_init)
-PLUGIN_INIT(exPlug2_setHal)
+PLUGIN_SET_HAL(exPlug2_setHal)
 PLUGIN_EXIT(exPlug2_exit)
