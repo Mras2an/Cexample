@@ -20,7 +20,7 @@ static void exPlug2_send(char * data)
 /*********************************************************
  *                                                       *
  ********************************************************/
-static struct exPlug2_api api_funcs2 =
+static struct exPlug2_api api_funcs =
 {
   .print        = exPlug2_print,
   .send         = exPlug2_send,
@@ -33,8 +33,8 @@ static void exPlug2_init(void)
 
 static void exPlug2_setHal(void)
 {
-  //log_plug("HAL\n");
-  //plugsHandling_setInterface(__FUNCTION__, &api_funcs2);
+  log_plug("HAL\n");
+  plugsHandling_setInterface(__FUNCTION__, &api_funcs);
 }
 
 static void exPlug2_exit(void)

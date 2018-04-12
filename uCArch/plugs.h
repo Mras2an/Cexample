@@ -26,3 +26,6 @@ typedef struct
 
 void plugsHandling_setInterface(const char * name, void * tt);
 void * plugsHandling_getInterface(const char * interfaceName);
+void plugs_init(void);
+void plugs_setHal(void);
+void plugs_exit(void);
