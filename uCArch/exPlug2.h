@@ -11,9 +11,7 @@
 #define __EXPLUG_2_H__
 #include "new.h"
 
-PLUGIN_RENAME(exPlug2_init);
-PLUGIN_RENAME(exPlug2_setHal);
-PLUGIN_RENAME(exPlug2_exit);
+PLUGIN_RENAME(exPlug2_init, exPlug2_setHal, exPlug2_exit);
 
 typedef void (*ptxPrint)(void);
 typedef void (*ptxSend)(char * data);

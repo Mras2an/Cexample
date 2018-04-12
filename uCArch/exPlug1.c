@@ -42,8 +42,5 @@ static void exPlug1_exit(void)
   log_plug("exit\n");
 }
 
-PLUGIN_INIT(exPlug1_init)
-PLUGIN_SET_HAL(exPlug1_setHal)
-PLUGIN_EXIT(exPlug1_exit)
-
+PLUGIN_ADD(exPlug1_init, exPlug1_setHal, exPlug1_exit)
 

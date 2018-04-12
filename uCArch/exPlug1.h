@@ -13,9 +13,7 @@
 #include "new.h"
 #include "plugs.h"
 
-PLUGIN_RENAME(exPlug1_init);
-PLUGIN_RENAME(exPlug1_setHal);
-PLUGIN_RENAME(exPlug1_exit);
+PLUGIN_RENAME(exPlug1_init, exPlug1_setHal, exPlug1_exit);
 
 typedef void (*ptxPrint)(void);
 typedef void (*ptxSend)(char * data);
