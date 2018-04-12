@@ -9,7 +9,6 @@
 
 #ifndef __EXPLUG_2_H__
 #define __EXPLUG_2_H__
-#include "new.h"
 
 PLUGIN_RENAME(exPlug2_init, exPlug2_setHal, exPlug2_exit);
 

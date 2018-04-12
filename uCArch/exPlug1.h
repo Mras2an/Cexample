@@ -10,7 +10,6 @@
 #ifndef __EXPLUG_1_H__
 #define __EXPLUG_1_H__
 
-#include "new.h"
 #include "plugs.h"
 
 PLUGIN_RENAME(exPlug1_init, exPlug1_setHal, exPlug1_exit);
