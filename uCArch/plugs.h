@@ -11,9 +11,11 @@
 #define ADDR_SIZE      (BIT_PROCESSOR / 8)
 
 /* Struct */
-typedef struct {
+typedef struct
+{
   void (*ptfx_init)(void);
   void (*ptfx_exit)(void);
 } plugin_functs;
 
-
+void plugsHandling_setInterface(const char * name, void * tt);
+void * plugsHandling_getInterface(const char * interfaceName);

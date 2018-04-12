@@ -2,8 +2,8 @@
 builtin_plugs += exPlug1
 builtin_source += exPlug1.c
 # Add plugin 2
-#builtin_plugs += exPlug2
-#builtin_source += exPlug2.c
+builtin_plugs += exPlug2
+builtin_source += exPlug2.c
 
 
 
@@ -28,7 +28,7 @@ EXEC=myPluginProject
 
 all: $(EXEC)
 
-myPluginProject: main.o $(source_file_obj)
+myPluginProject: main.o $(source_file_obj) plugsHandling.o
 	$(CC) -o $@ $^
 
 %.o: %.c
