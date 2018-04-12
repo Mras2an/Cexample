@@ -4,6 +4,19 @@
 #include "plugs.h"
 
 #define MAX_INTERFACE 10
+
+/* Struct */
+typedef struct
+{
+  void (*ptfx_init)(void);
+  void (*ptfx_exit)(void);
+} plugin_functs;
+
+typedef struct
+{
+  void (*ptfx_setHal)(void);
+} plugin_functs_hal;
+
 typedef struct splugsHandling
 {
   char * name;

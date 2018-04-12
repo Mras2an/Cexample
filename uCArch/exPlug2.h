@@ -7,9 +7,13 @@
  *
 */
 
-void callback_exPlug2_init(void);
-void callback_exPlug2_setHal(void);
-void callback_exPlug2_exit(void);
+#ifndef __EXPLUG_2_H__
+#define __EXPLUG_2_H__
+#include "new.h"
+
+PLUGIN_RENAME(exPlug2_init);
+PLUGIN_RENAME(exPlug2_setHal);
+PLUGIN_RENAME(exPlug2_exit);
 
 typedef void (*ptxPrint)(void);
 typedef void (*ptxSend)(char * data);
@@ -19,3 +23,5 @@ struct  exPlug2_api
   ptxPrint print;
   ptxSend send;
 };
+
+#endif

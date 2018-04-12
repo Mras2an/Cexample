@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include "plugs.h"
-
+#include "exPlug1.h"
 
 /*********************************************************
  *                                                       *
