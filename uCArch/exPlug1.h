@@ -12,7 +12,7 @@
 
 #include "plugs.h"
 
-PLUGIN_RENAME(exPlug1_init, exPlug1_setHal, exPlug1_exit);
+PLUGIN_RENAME(exPlug1_init, exPlug1_setHal, exPlug1_exit, PLUG_INIT_BEFORE_IAP_MODE);
 
 typedef void (*ptxPrint)(void);
 typedef void (*ptxSend)(char * data);

@@ -5,7 +5,7 @@
 void main()
 {
   /* Call all the plugins declared with "PLUGIN_INIT" */
-  plugs_init();
+  plugs_init(PLUG_INIT_AT_BOOT);
   plugs_setHal();
   struct exPlug1_api * aa = plugsHandling_getInterface("exPlug1_setHal");
 
@@ -24,7 +24,7 @@ void main()
   }
 
   /* Call all the plugins declared with "PLUGIN_EXIT" */
-  plugs_exit();
+  plugs_exit(PLUG_INIT_AT_BOOT);
 }
 
 

@@ -17,6 +17,11 @@ typedef struct
   void (*ptfx_setHal)(void);
 } plugin_functs_hal;
 
+typedef struct
+{
+  int priority;
+} plugin_priority;
+
 typedef struct splugsHandling
 {
   char * name;
@@ -36,13 +41,32 @@ plugin_functs_hal plugsHal[] =
   PLUGS_SETHAL
 };
 
-void plugs_init(void)
+plugin_priority plugsPriority[] =
+{
+  PLUGS_PRIORITY
+};
+
+void plugs_init(ePluginPriority_t prio)
 {
   int nb_plugins = ((int)sizeof(plugs) / (int)ADDR_SIZE);
   log_plug("Nb plugins init detected: %i\n", (nb_plugins / 2));
 
   for(int i = 0; i < (nb_plugins / 2); i++)
-    (plugs[i].ptfx_init)();
+  {
+	  printf("--%i\n", plugsPriority[i].priority);
+    if(prio == plugsPriority[i].priority)
+      (plugs[i].ptfx_init)();
+    else if(prio == plugsPriority[i].priority)
+      (plugs[i].ptfx_init)();
+    else if(prio  == plugsPriority[i].priority)
+      (plugs[i].ptfx_init)();
+    else if(prio  == plugsPriority[i].priority)
+      (plugs[i].ptfx_init)();
+    else if(prio  == plugsPriority[i].priority)
+      (plugs[i].ptfx_init)();
+    else
+      printf("No priority\n");
+  }
 }
 
 void plugs_setHal(void)
@@ -54,13 +78,26 @@ void plugs_setHal(void)
     (plugsHal[i].ptfx_setHal)();
 }
 
-void plugs_exit(void)
+void plugs_exit(ePluginPriority_t prio)
 {
   int nb_plugins = ((int)sizeof(plugs) / (int)ADDR_SIZE);
   log_plug("Nb plugins exit detected: %i\n", (nb_plugins / 2));
 
   for(int i = 0; i < (nb_plugins / 2); i++)
-    (plugs[i].ptfx_exit)();
+  {
+    if(prio == plugsPriority[i].priority)
+      (plugs[i].ptfx_exit)();
+    else if(prio == plugsPriority[i].priority)
+      (plugs[i].ptfx_exit)();
+    else if(prio  == plugsPriority[i].priority)
+      (plugs[i].ptfx_exit)();
+    else if(prio  == plugsPriority[i].priority)
+      (plugs[i].ptfx_exit)();
+    else if(prio  == plugsPriority[i].priority)
+      (plugs[i].ptfx_exit)();
+    else
+      printf("No priority\n");
+  }
 }
 
 void plugsHandling_setInterface(const char * name, void * tt)
