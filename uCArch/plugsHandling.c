@@ -14,7 +14,7 @@ typedef struct
 
 typedef struct
 {
-  void (*ptfx_setHal)(void);
+  void (*ptfx_setApi)(void);
 } plugin_functs_hal;
 
 typedef struct
@@ -49,39 +49,40 @@ plugin_priority plugsPriority[] =
 void plugs_init(ePluginPriority_t prio)
 {
   int nb_plugins = ((int)sizeof(plugs) / (int)ADDR_SIZE);
-  log_plug("Nb plugins init detected: %i\n", (nb_plugins / 2));
 
   for(int i = 0; i < (nb_plugins / 2); i++)
   {
-	  printf("--%i\n", plugsPriority[i].priority);
     if(prio == plugsPriority[i].priority)
+    {
       (plugs[i].ptfx_init)();
+      (plugsHal[i].ptfx_setApi)();
+    }
     else if(prio == plugsPriority[i].priority)
+    {
       (plugs[i].ptfx_init)();
+      (plugsHal[i].ptfx_setApi)();
+    }
     else if(prio  == plugsPriority[i].priority)
+    {
       (plugs[i].ptfx_init)();
+      (plugsHal[i].ptfx_setApi)();
+    }
     else if(prio  == plugsPriority[i].priority)
+    {
       (plugs[i].ptfx_init)();
+      (plugsHal[i].ptfx_setApi)();
+    }
     else if(prio  == plugsPriority[i].priority)
+    {
       (plugs[i].ptfx_init)();
-    else
-      printf("No priority\n");
+      (plugsHal[i].ptfx_setApi)();
+    }
   }
-}
-
-void plugs_setHal(void)
-{
-  int nb_plugins_hal = ((int)sizeof(plugsHal) / (int)ADDR_SIZE);
-  log_plug("Nb HAL detected: %i\n", nb_plugins_hal);
-
-  for(int i = 0; i < nb_plugins_hal; i++)
-    (plugsHal[i].ptfx_setHal)();
 }
 
 void plugs_exit(ePluginPriority_t prio)
 {
   int nb_plugins = ((int)sizeof(plugs) / (int)ADDR_SIZE);
-  log_plug("Nb plugins exit detected: %i\n", (nb_plugins / 2));
 
   for(int i = 0; i < (nb_plugins / 2); i++)
   {
@@ -95,8 +96,6 @@ void plugs_exit(ePluginPriority_t prio)
       (plugs[i].ptfx_exit)();
     else if(prio  == plugsPriority[i].priority)
       (plugs[i].ptfx_exit)();
-    else
-      printf("No priority\n");
   }
 }
 

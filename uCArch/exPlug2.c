@@ -31,10 +31,9 @@ static void exPlug2_init(void)
   log_plug("init\n");
 }
 
-static void exPlug2_setHal(void)
+struct exPlug2_api reurnStruct()
 {
-  log_plug("HAL\n");
-  plugsHandling_setInterface(__FUNCTION__, &api_funcs);
+  return api_funcs;
 }
 
 static void exPlug2_exit(void)
@@ -42,4 +41,5 @@ static void exPlug2_exit(void)
   log_plug("exit\n");
 }
 
-PLUGIN_ADD(exPlug2_init, exPlug2_setHal, exPlug2_exit)
+PLUGIN_ADD(exPlug2_init, exPlug2_exit, "exPlug2_api")
+

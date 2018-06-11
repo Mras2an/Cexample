@@ -11,7 +11,7 @@ builtin_source += exPlug2.c
 # List
 #
 plugs_declaration=$(foreach i,$(builtin_plugs),{callback_$(subst : ,,$(i))_init, callback_$(subst : ,,$(i))_exit},)
-plugs_setHal=$(foreach i,$(builtin_plugs),{callback_$(subst : ,,$(i))_setHal},)
+plugs_setApi=$(foreach i,$(builtin_plugs),{callbackApi_$(subst : ,,$(i))_init},)
 plugs_priority=$(foreach i,$(builtin_plugs),{def_$(subst : ,,$(i))_init},)
 source_file_head = $(foreach i,$(builtin_source), -include $(patsubst  %.c,%.h,$(i)))
 source_file_obj = $(patsubst  %.c,%.o,$(builtin_source))
@@ -22,7 +22,7 @@ source_file_obj = $(patsubst  %.c,%.o,$(builtin_source))
 # Env
 #
 CC=gcc
-CFLAGS=-DPLUGS_DECLARATIONS="$(plugs_declaration)" -DPLUGS_SETHAL="$(plugs_setHal)" -DPLUGS_PRIORITY="$(plugs_priority)"
+CFLAGS=-DPLUGS_DECLARATIONS="$(plugs_declaration)" -DPLUGS_SETHAL="$(plugs_setApi)" -DPLUGS_PRIORITY="$(plugs_priority)"
 LDFLAGS=
 EXEC=myPluginProject
 

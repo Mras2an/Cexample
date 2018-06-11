@@ -5,9 +5,9 @@
 void main()
 {
   /* Call all the plugins declared with "PLUGIN_INIT" */
-  plugs_init(PLUG_INIT_AT_BOOT);
-  plugs_setHal();
-  struct exPlug1_api * aa = plugsHandling_getInterface("exPlug1_setHal");
+  plugs_init(PLUG_INIT_APP_AT_BOOT);
+  plugs_init(PLUG_INIT_BEFORE_IAP_MODE);
+  struct exPlug1_api * aa = plugsHandling_getInterface("exPlug1_api");
 
   if(aa != NULL)
   {
@@ -15,7 +15,7 @@ void main()
     aa->send("test");
   }
 
-  struct exPlug2_api * bb = plugsHandling_getInterface("exPlug2_setHal");
+  struct exPlug2_api * bb = plugsHandling_getInterface("exPlug2_api");
 
   if(bb != NULL)
   {
@@ -24,7 +24,8 @@ void main()
   }
 
   /* Call all the plugins declared with "PLUGIN_EXIT" */
-  plugs_exit(PLUG_INIT_AT_BOOT);
+  plugs_exit(PLUG_INIT_APP_AT_BOOT);
+  plugs_exit(PLUG_INIT_BEFORE_IAP_MODE);
 }
 
 

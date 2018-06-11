@@ -31,16 +31,10 @@ static void exPlug1_init(void)
   log_plug("init\n");
 }
 
-static void exPlug1_setHal(void)
-{
-  log_plug("HAL\n");
-  plugsHandling_setInterface(__FUNCTION__, &api_funcs);
-}
-
 static void exPlug1_exit(void)
 {
   log_plug("exit\n");
 }
 
-PLUGIN_ADD(exPlug1_init, exPlug1_setHal, exPlug1_exit)
+PLUGIN_ADD(exPlug1_init, exPlug1_exit, "exPlug1_api")
 

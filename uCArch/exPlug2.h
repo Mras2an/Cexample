@@ -12,7 +12,7 @@
 
 #include "plugs.h"
 
-PLUGIN_RENAME(exPlug2_init, exPlug2_setHal, exPlug2_exit, PLUG_INIT_AT_BOOT);
+PLUGIN_RENAME(exPlug2_init, exPlug2_exit, PLUG_INIT_APP_AT_BOOT);
 
 typedef void (*ptxPrint)(void);
 typedef void (*ptxSend)(char * data);
