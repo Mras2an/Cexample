@@ -22,14 +22,15 @@ typedef struct
   int priority;
 } plugin_priority;
 
-typedef struct splugsHandling
+typedef struct splugsHandling plugsHandling_t;
+struct splugsHandling
 {
   char * name;
   void * tmp;
-} plugsHandling_t[MAX_INTERFACE];
+  plugsHandling_t * next;
+};
 
-static plugsHandling_t plugsHandling;
-#define this (&plugsHandling)
+static plugsHandling_t * this;
 
 plugin_functs plugs[] =
 {
@@ -99,29 +100,57 @@ void plugs_exit(ePluginPriority_t prio)
   }
 }
 
+int plugsHandling_find(plugsHandling_t * l, const char * name)
+{
+  if(l == NULL)
+    return 0;
+
+  if(strncmp(name, l->name, strlen(l->name)) == 0)
+    return 1;
+  else
+    return(plugsHandling_find(l->next, name));
+}
+
+
 void plugsHandling_setInterface(const char * name, void * tt)
 {
-  for(int i = 0; i < MAX_INTERFACE; i++)
-  {
-    if(this[i]->tmp == NULL)
-    {
-      this[i]->name = malloc(strlen(name) + 1);
-      memset(this[i]->name, '\0', strlen(name) + 1);
-      memcpy(this[i]->name, name, strlen(name));
-      this[i]->tmp = tt;
-      break;
-    }
-  }
+  if(plugsHandling_find(this, name))
+    return;
+
+  plugsHandling_t * p = malloc(sizeof(plugsHandling_t));
+  p->name = malloc(strlen(name) + 1);
+  memset(p->name, '\0', strlen(name) + 1);
+  memcpy(p->name, name, strlen(name));
+  p->tmp = tt;
+  p->next = this;
+  this = p;
 }
 
 void * plugsHandling_getInterface(const char * interfaceName)
 {
-  for(int i = 0; i < MAX_INTERFACE; i++)
+  plugsHandling_t * p = this;
+
+  while(p != NULL)
   {
-    if(this[i]->name != NULL)
-      if(strncmp(interfaceName, this[i]->name, strlen(this[i]->name)) == 0)
-        return this[i]->tmp;
+    if(p->name != NULL)
+      if(strncmp(interfaceName, p->name, strlen(p->name)) == 0)
+        return p->tmp;
+
+    p = p->next;
   }
 
   return NULL;
+}
+
+void plugsHandling_removeAllInterface(void)
+{
+  plugsHandling_t * p = this;
+
+  while(this != NULL)
+  {
+    this = this->next;
+    free(p->name);
+    free(p);
+    p = this;
+  }
 }

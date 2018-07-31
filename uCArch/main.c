@@ -7,6 +7,7 @@ void main()
   /* Call all the plugins declared with "PLUGIN_INIT" */
   plugs_init(PLUG_INIT_APP_AT_BOOT);
   plugs_init(PLUG_INIT_BEFORE_IAP_MODE);
+  plugs_init(PLUG_INIT_APP_AT_BOOT);
   struct exPlug1_api * aa = plugsHandling_getInterface("exPlug1_api");
 
   if(aa != NULL)
@@ -23,8 +24,13 @@ void main()
     (*bb).send("test 2");
   }
 
+  struct exPlug1_api * cc = plugsHandling_getInterface("exPlug1_api");
+
+  plugsHandling_removeAllInterface();
+
   /* Call all the plugins declared with "PLUGIN_EXIT" */
   plugs_exit(PLUG_INIT_APP_AT_BOOT);
+
   plugs_exit(PLUG_INIT_BEFORE_IAP_MODE);
 }
 

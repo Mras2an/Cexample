@@ -39,6 +39,7 @@ typedef enum ePluginPriority
 
 void plugsHandling_setInterface(const char * name, void * tt);
 void * plugsHandling_getInterface(const char * interfaceName);
+void plugsHandling_removeAllInterface(void);
 void plugs_init(ePluginPriority_t prio);
 void plugs_exit(ePluginPriority_t prio);
 
