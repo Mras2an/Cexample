@@ -105,10 +105,10 @@ int plugsHandling_find(plugsHandling_t * l, const char * name)
   if(l == NULL)
     return 0;
 
-  if(strncmp(name, l->name, strlen(l->name)) == 0)
+  if(strncmp(name, (*l).name, strlen((*l).name)) == 0)
     return 1;
   else
-    return(plugsHandling_find(l->next, name));
+    return(plugsHandling_find((*l).next, name));
 }
 
 
@@ -118,11 +118,11 @@ void plugsHandling_setInterface(const char * name, void * tt)
     return;
 
   plugsHandling_t * p = malloc(sizeof(plugsHandling_t));
-  p->name = malloc(strlen(name) + 1);
-  memset(p->name, '\0', strlen(name) + 1);
-  memcpy(p->name, name, strlen(name));
-  p->tmp = tt;
-  p->next = this;
+  (*p).name = malloc(strlen(name) + 1);
+  memset((*p).name, '\0', strlen(name) + 1);
+  memcpy((*p).name, name, strlen(name));
+  (*p).tmp = tt;
+  (*p).next = this;
   this = p;
 }
 
@@ -132,11 +132,11 @@ void * plugsHandling_getInterface(const char * interfaceName)
 
   while(p != NULL)
   {
-    if(p->name != NULL)
-      if(strncmp(interfaceName, p->name, strlen(p->name)) == 0)
-        return p->tmp;
+    if((*p).name != NULL)
+      if(strncmp(interfaceName, (*p).name, strlen((*p).name)) == 0)
+        return (*p).tmp;
 
-    p = p->next;
+    p = (*p).next;
   }
 
   return NULL;
@@ -148,8 +148,9 @@ void plugsHandling_removeAllInterface(void)
 
   while(this != NULL)
   {
-    this = this->next;
-    free(p->name);
+    this = (*this).next;
+    free((*p).name);
+    (*p).name = NULL;
     free(p);
     p = this;
   }
