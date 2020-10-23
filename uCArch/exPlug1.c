@@ -15,8 +15,6 @@ static void exPlug1_send(char * data)
 }
 
 
-
-
 /*********************************************************
  *                                                       *
  ********************************************************/
@@ -36,5 +34,5 @@ static void exPlug1_exit(void)
   log_plug("exit\n");
 }
 
-PLUGIN_ADD(exPlug1_init, exPlug1_exit, "exPlug1_api")
+PLUGIN_ADD_2(exPlug1_init, exPlug1_exit, exPlug1_struct)
 
